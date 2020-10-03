@@ -8,7 +8,7 @@ const MODE_STRONG_ATTACK = 'STRONG_ATTACK'; // MODE_STRONG_ATTACK = 1
 const LOG_EVENT_PLAYER_ATTACK = 'PLAYER_ATTACK';
 const LOG_EVENT_PLAYER_STRONG_ATTACK = 'PLAYER_STRONG_ATTACK';
 const LOG_EVENT_MONSTER_ATTCK ='MONSTER_ATTCK';
-const LOG_EVENT_PLAYER_HEAL ='PLAYER_HEA';
+const LOG_EVENT_PLAYER_HEAL ='PLAYER_HEAL';
 const LOG_EVENT_GAME_OVER = 'GAME_OVER';
 
 const enteredValue = prompt('Maximum life for you and the monster.', '100');
@@ -33,17 +33,29 @@ function writeToLog(ev, val, monsterHealth, playerHealth) {
         fianlMonsterHealth: monsterHealth,
         finalPlayerHealth: playerHealth
     };
-    if (ev === LOG_EVENT_PLAYER_ATTACK) {
-        logEntry.target = 'MONSTER';
-    } else if (ev === LOG_EVENT_PLAYER_STRONG_ATTACK) {
-        logEntry.target = 'MONSTER';
-    } else if (ev === LOG_EVENT_MONSTER_ATTCK) {
-        logEntry.target = 'PLAYER';
-    } else if (ev === LOG_EVENT_PLAYER_HEAL) {
-        logEntry.target = 'PLAYER';
-    } else if (ev === LOG_EVENT_GAME_OVER) {
-        logEntry.target = null;
+    switch (ev) {
+        case LOG_EVENT_PLAYER_ATTACK:
+        case LOG_EVENT_PLAYER_STRONG_ATTACK:
+            logEntry.target = 'MONSTER';
+            break;
+        case LOG_EVENT_MONSTER_ATTCK:
+        case LOG_EVENT_PLAYER_HEAL:
+            logEntry.target = 'PLAYER';
+            break;
+        default:
+            logEntry = {};
     }
+    // if (ev === LOG_EVENT_PLAYER_ATTACK) {
+    //     logEntry.target = 'MONSTER';
+    // } else if (ev === LOG_EVENT_PLAYER_STRONG_ATTACK) {
+    //     logEntry.target = 'MONSTER';
+    // } else if (ev === LOG_EVENT_MONSTER_ATTCK) {
+    //     logEntry.target = 'PLAYER';
+    // } else if (ev === LOG_EVENT_PLAYER_HEAL) {
+    //     logEntry.target = 'PLAYER';
+    // } else if (ev === LOG_EVENT_GAME_OVER) {
+    //     logEntry.target = null;
+    // }
     battleLog.push(logEntry);
 }
 
