@@ -166,7 +166,45 @@ function healPlayerHandler() {
 }
 
 function printLogHandler() {
-    console.log(battleLog);
+    // for (let i = 0; i<battleLog.length; i++) {
+    //     console.log('---------');
+    // }
+
+    // // 콘솔에 아무것도 안찍힘
+    // let j = 3;
+    // while (j < 3) {
+    //     console.log('j');
+    //     j++;
+    // }
+
+    // // 콘솔에 3 출력
+    // let j = 3;
+    // do {
+    //     console.log('j');
+    //     j++;
+    // } while (j < 3);
+
+    // console.log(battleLog);
+
+    // // for-of loop
+    // let i = 0;
+    // for (const logEntry of battleLog) {
+    //     console.log(logEntry);
+    //     console.log(i);
+    //     i++;
+    // }
+
+    let i = 0;
+    for (const logEntry of battleLog) {
+        console.log(`#${i}`);
+        for (const key in logEntry) {
+            // console.log(key);   // key 출력
+            // // console.log(logEntry.key); // 오류 구문
+            // console.log(logEntry[key]);  // value 출력
+            console.log(`${key} => ${logEntry[key]}`);
+        }
+        i++;
+    }
 }
 
 attackBtn.addEventListener('click', attackHandler);
